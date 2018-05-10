@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-3.1.xsd" >
+    <!--inyeccion de valores -->
+    <bean id="beanSpring" class="com.spring.BeanSpring" name="nameSpring" >
+        <property name="mensaje" value="Hola desde spring"/>
+    </bean>
+    
+    <!--inyeccion de valores por constructor-->
+    <bean id="beanSpringConst" class="com.spring.Persona" >
+        <constructor-arg type="Date" value="2010/02/24" index="2" /> 
+        <constructor-arg type="int" value="1" index="0"/> 
+        <constructor-arg type="String" value="Juan carlos" index="1"/> 
+    </bean>
+    
+    <!--inyeccion de valores por objetos anidados
+    <bean id="idCiudad" class="com.spring.Ciudad" >
+        <property name="nombre" value="Quito"/>
+    </bean>
+    
+    <bean id="idAcademia" class="com.spring.Academia" >
+        <property name="nombre" value="Computacion"/>
+        <property name="ciudad" ref="idCiudad"/>
+    </bean>
+    
+    <bean id="idProfesor" class="com.spring.Profesor" >
+        <property name="nombre" value="Luis"/>
+        <property name="academia" ref="idAcademia"/>
+    </bean>
+    -->
+    
+    
+    <!--inyeccion de valores por objetos anidados en un bean con dos objetos
+    
+    
+    <bean id="idAcademia" class="com.spring.Academia" >
+        <property name="nombre" value="Computacion"/>
+        <property name="ciudad">
+            <bean id="idCiudad" class="com.spring.Ciudad" >
+                <property name="nombre" value="Quito"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="idProfesor" class="com.spring.Profesor" >
+        <property name="nombre" value="Luis"/>
+        <property name="academia" ref="idAcademia"/>
+    </bean>-->
+    
+    
+     
+    <!--inyeccion de valores por objetos anidados en un bean con todos los objetos-->
+    
+    
+   
+    <bean id="idProfesor" class="com.spring.Profesor" >
+        <property name="nombre" value="Luis"/>
+        <property name="academia">
+            <bean id="idAcademia" class="com.spring.Academia" >
+                <property name="nombre" value="Computacion"/>
+                <property name="ciudad">
+                    <bean id="idCiudad" class="com.spring.Ciudad" >
+                        <property name="nombre" value="Quito"/>
+                    </bean>
+                </property>
+            </bean>
+     
+        </property>
+    </bean>
+    
+    
+    
+    <!--inyeccion de valores por listas de objetos-->
+    <bean id="idCiudad" class="com.spring.SLCiudad" >
+        <property name="nombre" value="Quito"/>
+        <property name="listaAcademia">
+            <list>
+                <ref bean="academia1"/>
+                <ref bean="academia2"/>
+                <ref bean="academia3"/>
+            </list>
+            
+        </property>
+    </bean>
+    
+    <bean id="academia1" class="com.spring.SLAcademia" >
+        <property name="nombre" value="Academia 1"/>
+    </bean>
+    
+    <bean id="academia2" class="com.spring.SLAcademia" >
+        <property name="nombre" value="Academia 2"/>
+    </bean>
+    
+    <bean id="academia3" class="com.spring.SLAcademia" >
+        <property name="nombre" value="Academia 2"/>
+    </bean>
+     
+    
+    
+    
+ 
+
+</beans>
